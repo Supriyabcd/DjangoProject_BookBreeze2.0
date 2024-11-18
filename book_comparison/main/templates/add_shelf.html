@@ -1,0 +1,28 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Shelf</title>
+    <link rel="stylesheet" href="book_comparison/bookshelf.css"> 
+</head>
+<body>
+    <h2>Add a New Shelf</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- This will render the shelf name, category, and books checkboxes -->
+        <button type="submit" class="btn btn-primary">Create Shelf</button>
+    </form>
+    <a href="{% url 'profile' %}">Cancel</a> 
+    {% if form.errors %}
+    <div class="alert alert-danger">
+        <ul>
+            {% for field, errors in form.errors.items %}
+                <li>{{ field }}: {{ errors|join:", " }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %} 
+</body>
+</html>

@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My App{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'book_comparison/base_style.css' %}">
+</head>
+<body>
+
+<!-- Header Section -->
+<header class="header">
+    <div class="container">
+        <div class="logo">bookbreeze</div>
+        <nav class="nav-links">
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>                
+                <li><a href="{% url 'profile' %}" >Profile</a></li>
+                <li><a href="{% url 'book_list' %}">Book List</a></li>
+                <li><form action="{% url 'logout' %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">Logout</button>
+                    </form>
+                </li> 
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Main Content Section -->
+<div class="content container">
+    {% block content %}{% endblock %}
+</div>
+
+<!-- Footer Section -->
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2024 bookbreeze</p>
+        <div class="footer-links">
+            <div>
+                <strong>Company</strong>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+            <div>
+                <strong>Connect</strong>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                </ul>
+            </div>
+        </div>    
+    </div>
+</footer>
+
+</body>
+</html>

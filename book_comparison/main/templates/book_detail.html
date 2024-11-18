@@ -1,0 +1,218 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Detail</title>
+    <link rel="stylesheet" href="{% static 'book_comparison/book_detail_style.css' %}">
+</head>
+
+<body>
+    <header class="top-header">
+        <div class="header-content">
+            <a href="{% url 'profile' %}" class="profile-icon-link">
+                <img src="{% static 'book_covers/profile-icon.jpg' %}" alt="Profile Icon" class="profile-icon">
+            </a>
+            <a href="{% url 'home' %}" class="search-link">Home</a>               
+            <a href="{% url 'book_list' %}" class="search-link">Browse</a>
+            
+            {% if user.is_authenticated %}
+                <form method="POST" action="{% url 'logout' %}" class="logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">Logout</button>
+                </form>
+            {% endif %}
+        </div>
+    </header>
+    <div class="book-detail-container">
+    
+        <!-- <a href="{% url 'book_list' %}" class="back-link">Back to Book List</a> -->
+    
+        <!-- Left section for book cover and deals -->
+        <div class="left-section">
+            <div class="book-box">
+                <img src="{{ book.cover_image.url }}" alt="{{ book.title }} cover">
+            </div>
+            <div class="book-deals">
+                <h3>Prices:</h3>
+                <ul>
+                    {% for price in book.prices.all %}
+                        <li>{{ price.website }}: ₹{{ price.price }}</li>
+                    {% empty %}
+                        <li>No prices available.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+    
+    
+            <div class="rating-container">
+                <h3>Rate this Book</h3>
+                
+                <!-- Form to Submit the Rating -->
+                <form method="POST" action="{% url 'rate_book' book.id %}">
+                    {% csrf_token %}
+                    
+                    <!-- Star Rating System -->
+                    <div class="star-rating">
+                        <!-- Loop through the possible rating values (5 to 1) and pre-check if user_rating matches -->
+                        <input type="radio" name="rating" value="5" id="rate-5" {% if user_rating|default:0 == 5 %}checked{% endif %}>
+                        <label for="rate-5">&#9733;</label>
+                    
+                        <input type="radio" name="rating" value="4" id="rate-4" {% if user_rating|default:0 == 4 %}checked{% endif %}>
+                        <label for="rate-4">&#9733;</label>
+                    
+                        <input type="radio" name="rating" value="3" id="rate-3" {% if user_rating|default:0 == 3 %}checked{% endif %}>
+                        <label for="rate-3">&#9733;</label>
+                    
+                        <input type="radio" name="rating" value="2" id="rate-2" {% if user_rating|default:0 == 2 %}checked{% endif %}>
+                        <label for="rate-2">&#9733;</label>
+                    
+                        <input type="radio" name="rating" value="1" id="rate-1" {% if user_rating|default:0 == 1 %}checked{% endif %}>
+                        <label for="rate-1">&#9733;</label>
+                    </div>
+                    
+                    
+                    <!-- Submit Button for Rating -->
+                    <button type="submit" class="rate-button">Submit</button>
+                </form>
+            </div>
+            
+    
+            <form method="POST" action="{% url 'save_shelf_status' %}">
+                {% csrf_token %}
+                <label for="shelf">Select Shelf:</label>
+                <input type="hidden" name="book_id" value="{{ book.id }}">
+                <select name="shelf" id="shelf">
+                    <option value="want_to_read">Want to Read</option>
+                    <option value="currently_reading">Currently Reading</option>
+                    <option value="read">Read</option>
+                </select>
+                <button type="submit" class="rate-button">Save</button>
+            </form>                    
+        </div>
+    
+        <!-- Right section for book details -->
+        <div class="right-section">
+            <h1>{{ book.title }}</h1>
+            <p class="author">Author: <strong>{{ book.author }}</strong></p>
+            <p class="published-date">Published on: {{ book.published_date }}</p>
+            <p class="genre">
+                Genre:
+                {% if book.genres.all %}
+                    {% for genre in book.genres.all %}
+                        {{ genre.name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                {% else %}
+                    No genre available.
+                {% endif %}
+            </p>
+            <!-- book_detail.html -->
+            <!-- book_detail.html -->
+            <div class="star-rating-avg">
+                <div class="stars-outer">
+                    <div class="stars-inner" style="width: {{ filled_stars_percentage }}%;"></div>
+                </div>
+                <span class="average-rating-text">{{ book.average_rating|floatformat:1 }}</span>
+            </div>
+            <div class="rating-count">{{ total_ratings }} ratings</div> <!-- Number of ratings here -->      
+            <div class="rating-count">{{ total_reviews }} reviews</div> <!-- Number of ratings here -->      
+            <div class="description">
+                <h3>Description</h3>
+                <p>{{ book.description }}</p>
+            </div>
+            <div class="book-meta-info">
+                <hr> <!-- Line above -->
+                <div class="book-counts">
+                    <p><strong>{{ currently_reading_count }}</strong> people are currently reading this book.</p>
+                    <p><strong>{{ want_to_read_count }}</strong> people want to read this book.</p>
+                </div>
+                <hr> <!-- Line below -->
+            </div>
+            
+            <hr> <!-- Line above -->
+             <h3>My Review</h3>
+             {% if user_review %}
+                 <p>{{ user_review.review }}</p>
+             {% else %}
+                 <p>You haven't reviewed this book yet.</p>
+             {% endif %}
+              <!-- book_detail.html or wherever you want to place the link -->
+              <a href="{% url 'review_book' book.id %}" class="review-button">
+                {% if user_review %}Edit Review{% else %}Write a Review{% endif %}
+              </a>
+            <hr> <!-- Line below -->
+    
+            <div class="community-reviews"> 
+                <div class="star-rating-avg">
+                    <h3>Community Reviews</h3>
+                    <div class="stars-outer">
+                        <div class="stars-inner" style="width: {{ filled_stars_percentage }}%;"></div>
+                    </div>
+                    <span class="average-rating-text">{{ book.average_rating|floatformat:1 }}</span>
+                </div>
+                <div class="rating-count">{{ total_ratings }} ratings</div> <!-- Number of ratings here -->      
+                <div class="rating-count">{{ total_reviews }} reviews</div> <!-- Number of ratings here -->      
+                <div class="rating-breakdown">
+                    {% for star, data in rating_breakdown.items %}
+                        <div class="rating-bar">
+                            <span>{{ star }} star{% if star > 1 %}s{% endif %}</span>
+                            <div class="bar">
+                                <div class="filled-bar" style="width: {{ data.percentage }}%;"></div>
+                            </div>
+                            <span>{{ data.count }} ({{ data.percentage }}%)</span>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% for review in other_reviews %}
+                    <p>
+                        <a href="{% url 'user_profile' review.user.id %}">{{ review.user.username }}</a>: {{ review.review }}
+                    </p>
+                {% empty %}
+                    <p>No reviews yet from other users.</p>
+                {% endfor %}
+            </div>
+            
+            <div class="related-books">
+                <h2>More books in similar categories</h2>
+                <div class="book-list-container">
+                    {% for related_book in related_books %}
+                    <div class="book-item">
+                        <div class="book-box">
+                            <a href="{% url 'book_detail' related_book.id %}">
+                                <img src="{{ related_book.cover_image.url }}" alt="{{ related_book.title }} cover">
+                            </a>
+                        </div>
+                    </div>   
+                    {% empty %}
+                        <p>No related books available.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>  
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 bookbreeze</p>
+            <div class="footer-links">
+                <div>
+                    <strong>Company</strong>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Terms</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <strong>Connect</strong>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>    
+        </div>
+    </footer>
+</body>
+</html>

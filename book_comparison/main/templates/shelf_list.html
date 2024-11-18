@@ -1,0 +1,40 @@
+{%  load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shelf list</title>
+    <link rel="stylesheet" href="{ % static 'book_comparsion/bookshelf.css'%}">
+</head>
+<body>
+    <div class="shelf-list-container">
+        <h2>Your Bookshelves</h2>
+        <ul>
+            {% for shelf in shelves %}
+                    <li>
+                        <strong>{{ shelf.name }} ({{ shelf.books.count }} books)</strong> - {{ shelf.get_category_display }}
+                        <ul>
+                            {% for book in shelf.books.all %}
+                            <li>
+                                {{ book.title }}
+                                <a href="{% url 'remove_book_from_shelf' shelf.id book.id %}">Remove</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <form action="{% url 'add_book_to_shelf' shelf.id book.id %}" method="post">
+                            {% csrf_token %}
+                            <select name="book_id">
+                                {% for book in user_books %}
+                                    <option value="{{ book.id }}">{{ book.title }}</option>
+                                {% endfor %}
+                            </select>
+                            <button type="submit">Add Book</button>
+                        </form>
+                    </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <a href="{% url 'add_shelf' %}">Add a new shelf</a>
+</body>
+</html>

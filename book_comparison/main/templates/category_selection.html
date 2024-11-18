@@ -1,0 +1,19 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'book_comparison/category_style.css' %}">
+<h1>Which categories do you enjoy?</h1>
+<p>Selecting at least 5 categories will ensure the ideal mix of book deals.</p>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <div class="category-section">
+        {% for genre in selected_genres %}
+            <div class="category-group">
+                <input type="checkbox" id="{{ genre.id }}" name="genres" value="{{ genre.id }}">
+                <label for="{{ genre.id }}">{{ genre.name }}</label>
+            </div>
+        {% endfor %}
+    </div>
+
+    <button type="submit">Finish</button>
+</form>

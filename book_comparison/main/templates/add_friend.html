@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Search for Friends{% endblock %}
+
+{% block content %}
+    <form method="get" action="{% url 'add_friend' %}">
+        <input type="text" name="query" placeholder="Search by username" value="{{ query }}">
+        <button type="submit">Search</button>
+    </form>
+
+    <ul>
+        {% for profile in search_results %}
+            <li>
+                {{ profile.user.username }}
+                <a href="{% url 'send_friend_request' profile.id %}">Send Friend Request</a>
+            </li>
+        {% empty %}
+            <li>No users found.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'profile' %}">Back to Profile</a>
+{% endblock %}

@@ -1,0 +1,126 @@
+<!--{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Comparison</title>
+    <link rel="stylesheet" href="{% static 'book_comparison/home.css' %}"> 
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">bookbreeze</div>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    {% if not user.is_authenticated %}
+                    <li><a href="{% url 'login'%}">Login</a></li>
+                    <li><a href="{% url 'signup'%}">Sign Up</a></li>
+                    {% else %}
+                        <li><a href="{% url 'profile' %}">Profile</a></li>
+                        <li><a href="{% url 'book_list' %}">Book List</a></li>
+                        <li>
+                            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" style="background: none; border: none; color: inherit; cursor: pointer;">Logout</button>
+                            </form>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="main-content">
+        <h1>Welcome to BookBreeze</h1>
+        <p>Find the best prices for your favorite books!</p>
+        {% if user.is_authenticated %}
+            <p>Hello, {{ user.username }}!</p>
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a> |
+            <a href="{% url 'signup' %}">Sign Up</a>
+        {% endif %}
+    </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2024 My App Name</p>
+                <div class="footer-links">
+                    <div>
+                        <strong>Company</strong>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Terms</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Connect</strong>
+                        <ul>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Twitter</a></li>
+                            <li><a href="#">Instagram</a></li>
+                        </ul>
+                    </div>
+                </div>    
+            </div>
+        </footer>
+</body>
+</html> -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>BookBreeze</title>
+    <link rel="stylesheet" href="{% static 'book_comparison/home.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet"> <!-- Add Merriweather font -->
+    <style>
+        /* Updated CSS for the container and background */
+        body {
+            margin: 0;
+            font-family: 'Poppins', serif; /* Use the imported font */
+            color: black; /* Set text color to black */
+        }
+
+        .container {
+            background: url("{% static 'homeimg1.jpg' %}") no-repeat center top;
+            background-size: cover; /* Cover the entire container */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Center content vertically */
+            text-align: center;
+        }
+
+        .content {
+            max-width: 600px; /* Limit the width of the content */
+        }
+
+        h1 {
+            font-size: 3em; /* Adjusted font size for title */
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        p {
+            font-size: 1.2em; /* Slightly larger font for readability */
+            line-height: 1.6; /* Increase line height for readability */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1>BookBreeze</h1>
+            <p>Where every book opens a new world—explore with BookBreeze!</p>
+            <a href="{% url 'book_list' %}" class="review-button">Browse</a>
+        </div>
+    </div>
+</body>
+</html>

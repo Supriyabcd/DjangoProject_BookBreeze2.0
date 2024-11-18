@@ -1,0 +1,536 @@
+/* Header Styles */
+.top-header {
+    background-color: #000;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for Header Content */
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-icon-link {
+    display: inline-block;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.search-link {
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logout-form {
+    margin: 0;
+}
+
+.logout-button {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.search-link:hover, .logout-button:hover {
+    color: #007BFF; /* Optional hover color */
+}
+
+
+
+.book-detail-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center; /* Centering content horizontally */
+    gap: 40px;
+    padding: 20px;
+    max-width: 1200px; /* Setting a max-width for the central content */
+    margin: 0 auto; /* Centering the container */
+    background-color: #f5f5f5; /* Light background for contrast */
+    position: relative;
+}
+
+/* Left Section Styling */
+.left-section {
+    flex: 0 0 300px;
+    text-align: center;
+}
+
+/* Book Box Styling */
+.book-box img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Book Deals Styling */
+.book-deals {
+    margin-top: 20px;
+    background-color: #333; /* Darker background */
+    color: #f5f5f5; /* Light text for contrast */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Adding shadow for depth */
+}
+
+/* Deals Heading */
+.book-deals h3 {
+    color: #f5f5f5;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+/* List Styling for Prices */
+.book-deals ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+}
+
+.book-deals ul li {
+    margin: 8px 0;
+}
+
+/* Right Section Styling */
+.right-section {
+    flex: 1;
+    max-width: 600px;
+}
+
+/* Heading and Text Styling */
+.right-section h1 {
+    font-size: 2.5rem;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+.right-section .author,
+.right-section .published-date,
+.right-section .genre {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Description Styling */
+.description {
+    margin-top: 20px;
+}
+
+.description h3 {
+    font-size: 22px;
+    color: #222;
+}
+
+.description p {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.6;
+}
+
+.related-books {
+    margin-top: 40px; /* Space above the related books section */
+    padding: 20px;
+    background-color: #f5f5f5; /* Background similar to book detail section */
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.related-books .book-box img {
+    width: 150px; /* Set a consistent width */
+    height: 220px; /* Set a consistent height */
+    object-fit: cover; /* Ensures the image fits the box without distortion */
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.related-books h2 {
+    font-size: 2rem; /* Font size for heading */
+    color: #222;
+    margin-bottom: 20px; /* Space below heading */
+}
+
+/* Style for the book list container in related books */
+.related-books .book-list-container {
+    display: flex;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    gap: 20px;
+}
+
+/* Make sure individual book items are styled properly */
+.related-books .book-item {
+    flex: 0 0 auto; /* Prevent shrinking */
+    margin-right: 10px; /* Small margin between items */
+}
+
+.book-actions {
+    position: relative;
+    display: inline-block;
+}
+
+/* General form styling */
+form {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for the select dropdown (shelf options) */
+select[name="shelf"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+    appearance: none; /* Removes default browser styling */
+    margin-bottom: 20px;
+}
+
+/* Add an arrow for the dropdown */
+select[name="shelf"] {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="gray" d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+}
+
+/* Hover and focus styles */
+select[name="shelf"]:hover, 
+select[name="shelf"]:focus {
+    border-color: #888;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Button styling */
+.rate-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff4500;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+.rate-button:hover {
+    background-color: #ff4500;
+}
+
+/* Form labels (if needed) */
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+}
+
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .book-detail-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .left-section {
+        margin-bottom: 20px;
+    }
+}
+
+.rating-container {
+    border: 1px solid #ddd; /* Light border for the box */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Padding for inner spacing */
+    max-width: 300px; /* Limits box width */
+    margin: 20px auto; /* Centers the box horizontally */
+    text-align: center; /* Centers text inside */
+    background-color: #f9f9f9; /* Light background for box */
+}
+
+.rating-container h3 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse; /* Keeps stars in the correct order */
+    justify-content: center;
+    font-size: 2rem;
+    color: lightgray;
+    margin-bottom: 15px;
+}
+
+.star-rating input[type="radio"] {
+    display: none; /* Hide the actual radio buttons */
+}
+
+.star-rating label {
+    color: lightgray; /* Color for unselected stars */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.star-rating input[type="radio"]:checked ~ label {
+    color: gold; /* Color for selected stars */
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: gold; /* Hover effect */
+}
+
+.submit-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #45a049;
+}
+
+.star-rating-avg {
+    position: relative;
+    font-size: 40px;
+}
+
+.stars-outer {
+    position: relative;
+    display: inline-block;
+    /* Grey stars (unfilled) */
+    color: lightgray;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    color: gold; /* Filled stars */
+    width: 0%;  /* This will be dynamically set */
+}
+
+.stars-outer::before {
+    content: "★★★★★";  /* Unicode for 5 stars */
+    display: inline-block;
+}
+
+.stars-inner::before {
+    content: "★★★★★";  /* Unicode for 5 stars (colored) */
+    display: inline-block;
+}
+
+.average-rating-text {
+    font-size: 1.2em; /* Increased size */
+    color: #000; /* Darker color for better visibility */
+    margin-left: 15px; /* Space between stars and rating */
+    font-weight: 550; /* Bold to make it stand out */
+    vertical-align: top; /* Aligns text with the stars */
+    line-height: 1.1; /* Adjusts the line-height to move the text upwards */
+    position: relative;
+    top: -3px; /* Adjusts the text position slightly upwards */
+}
+
+.book-meta-info {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.book-meta-info hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 10px 0;
+}
+
+.book-counts {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.book-counts p {
+    margin: 0 15px;
+}
+
+.book-counts strong {
+    font-weight: 600;
+    color: #000;
+}
+
+.review-button {
+    display: inline-block;        /* Makes the link a block-level element */
+    padding: 10px 20px;           /* Adds padding around the text */
+    background-color: black;      /* Black background color */
+    color: white;                 /* White text color */
+    text-decoration: none;        /* Removes the underline */
+    border-radius: 5px;           /* Optional: Rounds the corners */
+    font-weight: bold;            /* Optional: Makes text bold */
+    text-align: center;           /* Centers text within the box */
+    transition: background-color 0.3s;  /* Smooth transition on hover */
+}
+
+.review-button:hover {
+    background-color: #333;       /* Darker shade on hover */
+}
+
+
+/* Main container styling */
+.community-reviews {
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin: 20px 0;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styling */
+.community-reviews h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Average rating section styling */
+.average-rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.average-rating .stars {
+    color: #ffa500; /* Gold color for the stars */
+    font-size: 1.4em;
+    margin-right: 10px;
+}
+
+.average-rating-number {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #333;
+    margin-right: 10px;
+}
+
+.rating-count {
+    font-size: 0.9em; /* Smaller size */
+    color: #666; /* Subtle color */
+    margin-top: 1px; /* Space between average rating and count */
+    display: inline-block;
+    margin-left: 5px;
+    position: relative;
+    top: -9px;
+}
+
+/* Rating breakdown section styling */
+.rating-breakdown {
+    margin-top: 15px;
+}
+
+.rating-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.rating-bar span:first-child {
+    width: 60px; /* Space for the star label */
+    font-size: 1.0em;
+    color: #555;
+}
+
+.bar {
+    width: 70%;
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 0 10px;
+}
+
+.filled-bar {
+    height: 100%;
+    background-color: #ffa500; /* Orange color for filled bar */
+    border-radius: 5px;
+    transition: width 0.3s ease; /* Smooth transition */
+}
+
+.rating-bar span:last-child {
+    font-size: 1.0em;
+    color: #555;
+}
+
+.footer {
+    width: 100%;
+    background-color: #F4F1EA;
+    padding: 20px 0;
+    border-top: 1px solid #E2DED6;
+    position: relative;
+    bottom: 0;
+}
+
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-links {
+    display: flex;
+    gap: 50px;
+}
+
+.footer-links div ul {
+    list-style: none;
+    margin-top: 10px;
+    padding-left: 0;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #614b3a;
+}
+
+.footer-links a:hover {
+    color: #382110;
+}

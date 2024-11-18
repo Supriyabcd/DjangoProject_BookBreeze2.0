@@ -1,0 +1,16 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Your Friends{% endblock %}
+
+{% block content %}
+    <h1>Your Friends</h1>
+    <ul>
+        {% for friend in friends %}
+            <li><a href="{% url 'user_profile' friend.user.id %}">{{ friend.user.username }}</a></li>
+        {% empty %}
+            <li>You have no friends yet.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'profile' %}">Back to Profile</a>
+{% endblock %}

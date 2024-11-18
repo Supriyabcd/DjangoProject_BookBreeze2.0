@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+    <link rel="stylesheet" href="{% static 'book_comparison/style.css' %}">
+    <style>
+        /* Additional styles directly in the HTML if needed */
+    </style>
+</head>
+<body>
+    <header class="top-header">
+        <div class="header-content">
+            <a href="{% url 'profile' %}" class="profile-icon-link">
+                <img src="{% static 'book_covers/profile-icon.jpg' %}" alt="Profile Icon" class="profile-icon">
+            </a>
+            <a href="{% url 'home' %}" class="search-link">Home</a>               
+            <a href="{% url 'book_list' %}" class="search-link">Browse</a>
+            {% if user.is_authenticated %}
+                <form method="POST" action="{% url 'logout' %}" class="logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">Logout</button>
+                </form>
+            {% endif %}
+        </div>
+    </header>
+    <h1>Books</h1>   
+
+    <div class="book-section">
+        <h2>Latest Releases</h2>
+        <div class="book-list-container">
+            {% for book in latest_books %}
+            <div class="book-item">
+                <div class="book-box">
+                    <a href="{% url 'book_detail' book.id %}">
+                        <img src="{{ book.cover_image.url }}" alt="{{ book.title }} cover" class="book-cover">
+                    </a>
+                </div>
+            </div>   
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="book-section">
+        <h2>Popular in Fiction</h2>
+        <div class="book-list-container">
+            {% for book in fiction_books %}
+            <div class="book-item">
+                <div class="book-box">
+                    <a href="{% url 'book_detail' book.id %}">
+                        <img src="{{ book.cover_image.url }}" alt="{{ book.title }} cover" class="book-cover">
+                    </a>
+                </div>
+            </div>   
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="book-section">
+        <h2>Popular in Nonfiction</h2>
+        <div class="book-list-container">
+            {% for book in nonfiction_books %}
+            <div class="book-item">
+                <div class="book-box">
+                    <a href="{% url 'book_detail' book.id %}">
+                        <img src="{{ book.cover_image.url }}" alt="{{ book.title }} cover" class="book-cover">
+                    </a>
+                </div>
+            </div>   
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="back-link">
+    {% if user.is_authenticated %}
+    <form method="POST" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+    {% endif %}
+    </div>
+
+
+</body>
+</html>

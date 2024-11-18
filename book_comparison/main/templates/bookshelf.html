@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookshelf</title>
+    <link rel="stylesheet" href="{% static 'book_comparison/bookshelf.css' %}">
+</head>
+<body>
+    <div class="bookshelf-container">
+        <table class="bookshelf-table">
+            <thead>
+                <tr>
+                    <th>Cover</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <!-- <th>Avg<br>rating</th>
+                    <th>Rating</th> -->
+                    <th>Shelves</th>
+                    <th>Review</th>
+                    <!-- <th>Date<br>read</th>
+                    <th>Date<br>added</th> -->
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td><img src="{{ book.cover_image.url }}" alt="{{ book.title }} cover" class="book-cover"></td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <!-- <td>{{ book.average_rating|default:"-" }}</td>
+                    <td class="stars">
+                        {% for star in book.average_rating|floatformat:0 %}
+                            ★
+                        {% endfor %}
+                    </td> -->
+                    <td>{{shelf_name}}</td>
+                    <td><a href="{% url 'review_book' book.id %}" class="review-link">Write a review</a></td>
+                    <!-- <td>{{ book.date_read|default:"not set" }}</td>
+                    <td>{{ book.date_added }}</td> -->
+                    <!-- <td><a href="#" class="edit-link">edit</a> <a href="#" class="remove-link">✖</a></td> -->
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="8">No books found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

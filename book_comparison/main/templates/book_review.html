@@ -1,0 +1,24 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'book_comparison/book_review_style.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write a Review</title>
+</head>
+<body>
+
+<div class="review-container">
+    <h1>Write a Review for {{ book.title }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="review">Write Your Review:</label>
+        <textarea id="review" name="review" rows="5" placeholder="Share your thoughts here...">{% if previous_review %}{{ previous_review.review }}{% endif %}</textarea>
+        <button type="submit">Submit Review</button>
+    </form>
+    <a href="{% url 'book_detail' book.pk %}" class="back-link">Back to Book Details</a>
+</div>
+
+</body>
+</html>

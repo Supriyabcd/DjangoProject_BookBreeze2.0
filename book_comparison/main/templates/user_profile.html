@@ -1,0 +1,108 @@
+<!--<h1>{{ user.username }}'s Profile</h1>
+<p>Email: {{ user.email }}</p>
+<p>Joined on: {{ user.date_joined }}</p> -->
+<!-- Add other profile information here -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.username }}'s Profile</title>
+    <link rel="stylesheet" href="{% static 'book_comparison/profile.css' %}">
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-picture">
+                {% if image %}
+                    <img src="{{ image.url }}" alt="Profile Picture">
+                {% else %}
+                    <img src="{% static 'book_covers/profile-icon.jpg' %}" alt="Default Profile Picture">
+                {% endif %}
+            </div>
+            <div class="profile-info">
+                <h1>{{ user.username }}</h1>
+                <p><strong>Details</strong></p>
+                <p>{{ user.username }} hasn't added any details yet.</p>
+                <p><strong>Joined in:</strong> {{ user.date_joined|date:"F Y" }}</p>
+            </div>
+        </div>
+        
+        <div class="bookshelves">
+            <h2>{{ user.username }}'s Bookshelves</h2>
+            <ul class="bookshelf-links">
+                <li><a href="{% url 'bookshelf' 'read' %}">Read({{ read_count }})</a></li>
+                <li><a href="{% url 'bookshelf' 'currently_reading' %}">Currently Reading({{ currently_reading_count }})</a></li>
+                <li><a href="{% url 'bookshelf' 'to_read' %}">Want to Read({{ to_read_count }})</a></li>
+                {% for shelf in shelves %}
+                    <li><a href="{% url 'bookshelf' shelf.id %}">{{ shelf.name }}({{ shelf.books.count }})</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <a href="{% url 'chat' user.userprofile.id %}">Chat with {{ user.username }}</a>
+
+
+        <!--<div class="currently-reading-section">
+            <h3>{{ user_profile.user.username }} is currently reading</h3>
+            <ul class="book-list">
+                {% for entry in books_currently_reading %}
+                    <li>
+                        <img src="{{ entry.book_item.cover_image.url }}" alt="{{ entry.book_item.title }} cover" class="book-cover">
+                        <div class="book-details">
+                            <h4>{{ entry.book_item.title }}</h4>
+                            <p>by {{ entry.book_item.author }}</p>
+                            <p><strong>Progress:</strong> {{ entry.progress }}%</p>
+                            
+                            <form action="{% url 'update_progress' entry.book_item.id %}" method="post" class="update-progress-form">
+                                {% csrf_token %}
+                                <input type="number" name="pages_read" min="0" max="{{ entry.book_item.total_pages }}" value="{{ entry.pages_read }}" class="progress-input" placeholder="Pages read">
+                                <button type="submit" class="btn btn-primary">Update Progress</button>
+                            </form>
+                            
+                            {% if entry.progress %}
+                                <p>Current Progress: {{ entry.progress }}%</p>
+                            {% endif %}
+                            
+                            <p>bookshelves: currently-reading</p>
+                            <span class="book-meta">9 hours, 5 min ago • <a href="#">comment</a></span>
+                        </div>
+                    </li>
+                {% empty %}
+                    <li>No books currently reading</li>
+                {% endfor %}
+            </ul>
+        </div> -->
+        
+        <!--<div class="currently-reading-section">
+            <h3>{{ user_profile.user.username }} is currently reading</h3>
+            <ul class="book-list">
+                {% for book_item in books_currently_reading %}
+                    <li>
+                        {% if book_item.book.cover_image %}
+                            <img src="{{ book_item.book.cover_image.url }}" alt="{{ book_item.book.title }} cover" class="book-cover">
+                        {% else %}
+                            <img src="{% static 'book_covers/default_cover.jpg' %}" alt="Default Book Cover" class="book-cover">
+                        {% endif %}
+                        <div class="book-details">
+                            <h4>{{ book_item.book.title }}</h4>
+                            <p>by {{ book_item.book.author }}</p>
+                            <p><strong>Progress:</strong> {{ book_item.progress }}%</p>
+                           
+                            <form action="{% url 'update_progress' book_item.pk %}" method="post" class="update-progress-form">
+                                {% csrf_token %}
+                                <input type="number" name="progress" min="0" max="100" value="{{ book_item.progress }}" class="progress-input">
+                                <button type="submit" class="btn btn-primary">Update Progress</button>
+                            </form>
+                        </div>
+                    </li>
+                {% empty %}
+                    <li>No books currently reading</li>
+                {% endfor %}
+            </ul>
+        </div> -->       
+    </div>
+</body>
+</html>

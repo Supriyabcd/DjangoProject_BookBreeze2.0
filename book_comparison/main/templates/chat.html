@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat with {{ friend.user.username }}</title>
+    <link rel="stylesheet" href="{% static 'book_comparison/chat.css' %}">
+</head>
+<body>
+    <div id="chat-container">
+        <div id="header">Chat with {{ friend.user.username }}</div>
+
+        <div id="messages">
+            {% for message in messages %}
+                <div class="message {% if message.sender == request.user.userprofile %}user-message{% else %}friend-message{% endif %}">
+                    <strong>{{ message.sender.user.username }}:</strong> {{ message.content }}
+                    <small>{{ message.timestamp }}</small>
+                </div>
+            {% endfor %}
+        </div>
+
+        <form id="message-form" method="post">
+            {% csrf_token %}
+            <textarea name="content" placeholder="Type your message here..." rows="1"></textarea>
+            <button type="submit">Send</button>
+        </form>
+
+        <a href="{% url 'profile' %}">Back to Profile</a>
+    </div>
+</body>
+</html>

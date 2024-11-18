@@ -1,0 +1,202 @@
+/* Apply a dark background color */
+body {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Universal font and size settings */
+h1, h2 {
+    font-family: 'Poppins', sans-serif;
+    color: #f5f5f5;
+    margin: 20px 0; /* Increased margin for better spacing */
+}
+
+/* Main heading */
+h1 {
+    font-size: 5rem; /* You can adjust this size as needed */
+    text-align: center;
+}
+
+.book-section {
+    margin-bottom: 60px; /* Space between each category section */
+}
+
+.book-section h2 {
+    font-size: 2rem; /* Increased font size for section headings */
+    border-bottom: 2px solid #f5f5f5; /* Optional: Add a border below heading */
+    padding-bottom: 10px; /* Space below the heading */
+}
+
+/* Style for individual book items */
+.book-item {
+    background-color: #2a2a2a;
+    padding: 0; /* Remove padding to eliminate space between items */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Book box styling */
+.book-box {
+    width: 100%;
+    height: 100%; /* Allow the height to adjust based on the image's aspect ratio */
+    overflow: hidden;
+    position: relative;
+}
+
+/* Ensure the anchor tag takes full space */
+.book-box a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Center and fill the book cover image */
+.book-box img {
+    width: 100%;
+    height: 100%; /* Maintain the natural aspect ratio of the image */
+    display: block;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover effect on the book cover */
+.book-box:hover img {
+    transform: scale(1.05); /* Slightly enlarge the image */
+}
+
+/* Style for the book list container */
+.book-list-container {
+    display: flex;
+    flex-wrap: nowrap; /* Do not wrap items */
+    overflow-x: auto; /* Enable horizontal scrolling */
+}
+
+.book-list-container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for clean look */
+}
+
+/* Adjust the size of the book item */
+.book-item {
+    flex: 0 0 auto; /* Make sure items don’t shrink or grow */
+    width: calc(20% - 10px); /* Set width for each item */
+    margin-right: 10px; /* Small margin between items */
+}
+
+.form-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full height of the viewport */
+    padding: 0 20px;
+    background-color: #1e1e1e; /* Dark background for the form page */
+}
+
+.form-container {
+    background-color: #2a2a2a; /* Dark background for form */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 400px; /* Set a max width for form */
+    margin: 50px auto; /* Center form with margin */
+}
+
+.form-container h1, .form-container h2 {
+    font-size: 2.5rem;
+    color: #f5f5f5;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #1e1e1e;
+    border: 1px solid #444;
+    border-radius: 5px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.form-container input::placeholder {
+    color: #b3b3b3; /* Lighter gray for placeholders */
+}
+
+.form-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #444444;
+    color: #ffffff;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.form-container button:hover {
+    background-color: #666666; /* Lighter shade on hover */
+}
+
+.form-container a {
+    display: block;
+    text-align: center;
+    color: #f5f5f5;
+    text-decoration: none;
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+.form-container a:hover {
+    color: #e0e0e0; /* Slightly lighter on hover */
+}
+
+/* Error message styling */
+.error-message {
+    color: #ff4d4d;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Input fields with error */
+.form-container input.is-invalid {
+    border-color: #ff4d4d;
+}
+
+
+/* Hide vertical scrollbar for the whole page */
+html, body {
+    overflow-x: hidden; /* Hide horizontal scrollbar, optional */
+}
+
+html::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, Opera, and Brave */
+}
+
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+    .book-item {
+        width: calc(40% - 10px); /* Wider items for smaller screens */
+    }
+
+    .form-container {
+        padding: 20px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .form-container h1 {
+        font-size: 2rem;
+    }
+
+    .form-container button {
+        font-size: 1rem;
+    }
+
+}

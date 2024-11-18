@@ -1,0 +1,8 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'book_comparison/personal_detail_style.css' %}">
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Next</button>
+</form>
+

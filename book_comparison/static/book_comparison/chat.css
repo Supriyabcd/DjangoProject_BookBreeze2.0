@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#chat-container {
+    width: 400px;
+    height: 600px;
+    max-width: 90%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    background-color: #e5ddd5;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+#messages::-webkit-scrollbar {
+    display: none; /* WebKit-based browsers */
+}
+
+.message {
+    display: block; /* Ensures each message takes a full line */
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 20px;
+    max-width: 70%;
+    font-size: 14px;
+    position: relative;
+}
+
+.message strong {
+    font-weight: bold;
+}
+
+.message small {
+    display: block;
+    font-size: 10px;
+    color: #777;
+    text-align: right;
+}
+
+.user-message {
+    background-color: #dcf8c6;
+    align-self: flex-end;
+    text-align: left;
+}
+
+.friend-message {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    align-self: flex-start;
+    text-align: left;
+}
+
+#message-form {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    background-color: #fff;
+}
+
+#message-form textarea {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    resize: none;
+    height: 40px;
+}
+
+#message-form button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#message-form button:hover {
+    background-color: #0056b3;
+}
+
+a {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

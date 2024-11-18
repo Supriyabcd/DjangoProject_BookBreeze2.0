@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Friend Requests {% endblock %}
+
+{% block content %}
+{% if friend_requests %}
+    <ul>
+        {% for request in friend_requests %}
+            <li>
+                {{ request.from_user.user.username }} 
+                <form method="POST" action="{% url 'accept_friend_request' request.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Accept Friend Request</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No friend requests at the moment.</p>
+    <a href="{% url 'profile' %}">Back to Profile</a>
+{% endif %}
+{% endblock %}
