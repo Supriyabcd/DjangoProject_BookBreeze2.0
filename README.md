@@ -22,8 +22,8 @@ To set up the project locally, follow these steps:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/personalized-ebook-management-system.git
-   cd personalized-ebook-management-system
+   git clone https://github.com/Supriyabcd/book_comparison.git
+   cd book_comparison
    ```
 
 2. **Set Up a Virtual Environment**:
@@ -32,18 +32,13 @@ To set up the project locally, follow these steps:
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
-3. **Install Dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Apply Database Migrations**:
+3. **Apply Database Migrations**:
    ```bash
    python manage.py makemigrations
    python manage.py migrate
    ```
 
-5. **Run the Development Server**:
+4. **Run the Development Server**:
    ```bash
    python manage.py runserver
    ```
